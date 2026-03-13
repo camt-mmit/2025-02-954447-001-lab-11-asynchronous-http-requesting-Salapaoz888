@@ -1,0 +1,92 @@
+<app-opening-crawl
+  [episode]="data().episode_id"
+  [title]="data().title"
+  [crawl]="data().opening_crawl"
+  class="_crawl"
+/>
+
+<hr />
+<dl class="_data-view">
+  <dt>Title</dt>
+  <dd>
+    <a
+      [href]="data().title | searchUrl"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="app-cmp-link app-cl-external"
+      >{{ data().title }}</a
+    >
+  </dd>
+
+  <dt>Episode ID</dt>
+  <dd>
+    <span class="app-cl-number">{{ data().episode_id | number }}</span>
+  </dd>
+
+  <dt>Opening Crawl</dt>
+  <dd>{{ data().opening_crawl }}</dd>
+
+  <dt>Director</dt>
+  <dd>{{ data().director }}</dd>
+
+  <dt>Producer</dt>
+  <dd>{{ data().producer }}</dd>
+
+  <dt>Release Date</dt>
+  <dd>{{ data().release_date | date }}</dd>
+
+  <dt>Characters</dt>
+  <dd>
+    <ul>
+      @for (fieldTree of form.characters; track fieldTree) {
+        @let resouce = fieldTree().metadata(characterResourceKey)!;
+
+        <li>
+          @if (resouce.hasValue()) {
+            <a
+              [routerLink]="['people', resouce.value().url | extractId]"
+              [relativeTo]="moduleRoute()"
+              class="app-cmp-link"
+              >{{ resouce.value().name }}</a
+            >
+          } @else if (resouce.error(); as error) {
+            <span class="_status-warning">{{ error.message }}</span>
+          } @else if (resouce.isLoading()) {
+            <span class="_status-loading">Loading</span>
+          }
+        </li>
+      }
+    </ul>
+  </dd>
+
+  <dt>Planets</dt>
+  <dd>
+    <ul>
+      @for (fieldTree of form.planets; track fieldTree) {
+        @let resouce = fieldTree().metadata(planetResourceKey)!;
+
+        <li>
+          @if (resouce.hasValue()) {
+            <a
+              [routerLink]="['planets', resouce.value().url | extractId]"
+              [relativeTo]="moduleRoute()"
+              class="app-cmp-link"
+              >{{ resouce.value().name }}</a
+            >
+          } @else if (resouce.error(); as error) {
+            <span class="_status-warning">{{ error.message }}</span>
+          } @else if (resouce.isLoading()) {
+            <span class="_status-loading">Loading</span>
+          }
+        </li>
+      }
+    </ul>
+  </dd>
+
+  <dt>Created</dt>
+  <dd>{{ data().created | date }}</dd>
+
+  <dt>Edited</dt>
+  <dd>{{ data().edited | date }}</dd>
+</dl>
+<hr />

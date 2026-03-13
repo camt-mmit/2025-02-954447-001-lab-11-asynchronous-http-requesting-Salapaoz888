@@ -1,0 +1,15 @@
+@use './common';
+@use './message';
+@use './data';
+
+:host {
+  @include common.layout-block();
+}
+
+._empty-message {
+  @include message.layout-message();
+}
+
+._data-list {
+  @include data.layout-data-list();
+}

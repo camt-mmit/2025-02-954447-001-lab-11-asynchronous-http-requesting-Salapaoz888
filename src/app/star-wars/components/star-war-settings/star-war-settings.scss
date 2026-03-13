@@ -1,0 +1,62 @@
+@use '../../scss/common';
+@use '../../scss/data';
+
+$label-width: 18ch;
+
+:host {
+  @include common.layout-block();
+
+  @layer {
+    & {
+      --_actions-bar-column-gap: var(--app-column-gap);
+      --_warn-color: var(--app-warn-color);
+    }
+  }
+}
+
+._main-fieldset {
+  @include common.layout-block();
+}
+
+._data-fieldsets {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  row-gap: 1em;
+}
+
+._data-fieldset {
+  @include data.layout-data-form($label-width);
+
+  margin: 0px;
+  width: 100%;
+}
+
+._actions-bar {
+  @include common.layout-block();
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: var(--_actions-bar-column-gap);
+
+  margin-top: 32px;
+
+  &:has(> :only-child) {
+    justify-content: center;
+  }
+}
+
+._messages {
+  @include common.layout-block();
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & > .app-cl-warn {
+    color: var(--_warn-color);
+  }
+}

@@ -1,0 +1,236 @@
+@use '../../scss/common';
+
+:host {
+  @include common.layout-block();
+
+  @layer {
+    & {
+      --_fullscreen-button-on-hover-color: rgb(from var(--app-surface-container-color) r g b / 25%);
+    }
+  }
+
+  --__rotate: 70deg;
+  --__speed: 20px;
+  --__base-font-size: calc((var(--_width) / 30) * 2);
+  --__remain-height: calc(var(--_height) / sin(calc(90deg - var(--__rotate))) - var(--_height));
+  --__justed-crawl-height: calc(var(--_crawl-height) + (0.25 * var(--__remain-height)));
+  --__duration: calc(1s * (var(--__justed-crawl-height) / var(--__speed)));
+
+  color-scheme: dark;
+
+  background-color: var(--app-surface-color);
+
+  position: relative;
+  overflow: hidden;
+
+  &:fullscreen {
+    ._fullscreen-button {
+      display: none;
+    }
+  }
+}
+
+._activation-container {
+  @include common.layout-block();
+
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+._intro-container {
+  @include common.layout-block();
+
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: #4bd5ee;
+
+  animation-delay: 5s;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-name: fade-out;
+
+  & > ._intro-content {
+    font-family: 'Libre Franklin';
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: calc(0.75 * var(--__base-font-size));
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    display: none;
+  }
+}
+
+._after-intro-container {
+  @include common.layout-block();
+
+  position: relative;
+
+  height: 100%;
+
+  font-weight: 800;
+  font-style: normal;
+  font-stretch: 151%;
+  font-variation-settings:
+    'slnt' 0,
+    'GRAD' -200,
+    'XOPQ' 96,
+    'XTRA' 603,
+    'YOPQ' 79,
+    'YTAS' 750,
+    'YTDE' -203,
+    'YTFI' 738,
+    'YTLC' 514,
+    'YTUC' 712;
+  font-optical-sizing: auto;
+
+  perspective: 300px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+}
+
+._logo-container {
+  @include common.layout-block();
+
+  position: absolute;
+  top: 0px;
+
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  perspective: 0px;
+  perspective-origin: center;
+
+  & > ._logo-content {
+    width: 150%;
+
+    flex: 0 0 auto;
+
+    animation-duration: 15s;
+    animation-timing-function: cubic-bezier(1, 0.125, 1, 0.5);
+    animation-fill-mode: forwards;
+    animation-name: zoom-out;
+  }
+}
+
+@keyframes zoom-out {
+  from {
+    transform: translateZ(0px);
+  }
+
+  to {
+    display: none;
+    transform: translateZ(-100px);
+  }
+}
+
+._crawl-container {
+  @include common.layout-block();
+
+  height: 100%;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  color: #ffe81f;
+  text-align: justify;
+
+  transform: rotateX(var(--__rotate));
+  transform-origin: bottom;
+
+  & > ._crawl-content {
+    @include common.layout-block();
+
+    width: 100%;
+
+    padding-top: var(--_height);
+    font-size: var(--__base-font-size);
+
+    animation-duration: var(--__duration);
+    animation-timing-function: linear;
+    animation-delay: 10s;
+    animation-name: scroll-up;
+
+    & > header {
+      text-align: center;
+
+      & > h2 {
+        text-transform: uppercase;
+      }
+
+      & > :is(h1, h2) {
+        font-size: inherit;
+        white-space: nowrap;
+      }
+    }
+
+    & > p {
+      display: flex;
+      flex-direction: column;
+
+      & > * {
+        text-align: justify;
+        text-align-last: justify;
+        white-space: nowrap;
+
+        &:last-child {
+          text-align-last: start;
+        }
+      }
+    }
+  }
+}
+
+@keyframes scroll-up {
+  from {
+    transform: translateY(0px);
+  }
+
+  to {
+    transform: translateY(calc(-1 * var(--__justed-crawl-height)));
+  }
+}
+
+._fullscreen-button {
+  box-sizing: border-box;
+  display: inline-block;
+  position: absolute;
+
+  border: none;
+  border-radius: 4px;
+
+  padding: 4px 8px;
+
+  right: 8px;
+  bottom: 8px;
+
+  background-color: transparent;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--_fullscreen-button-on-hover-color);
+  }
+}

@@ -1,0 +1,18 @@
+@use '../../scss/list-component';
+
+._details {
+  & > summary {
+    cursor: pointer;
+  }
+
+  & > dl {
+    & > dt {
+      font-weight: bold;
+    }
+
+    & > dd {
+      text-align: justify;
+      white-space: pre-wrap;
+    }
+  }
+}

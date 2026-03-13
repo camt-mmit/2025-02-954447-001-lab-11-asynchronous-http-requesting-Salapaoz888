@@ -1,0 +1,42 @@
+<form
+  (submit)="$event.preventDefault()"
+  (submit)="onSubmit()"
+  (reset)="$event.preventDefault()"
+  (reset)="onReset()"
+>
+  <fieldset class="_main-fieldset" [disabled]="form().disabled() || form().submitting()">
+    <div class="_data-fieldsets">
+      <fieldset class="_data-fieldset">
+        <legend>Opening Crawl</legend>
+
+        <label>
+          <b>Song URL</b>
+          <input type="url" [formField]="form.openingCrawl.songUrl" />
+        </label>
+
+        <label>
+          <b>Starting Time (s)</b>
+          <input type="number" [formField]="form.openingCrawl.startingTime" step="0.01" />
+        </label>
+      </fieldset>
+    </div>
+
+    <div class="_actions-bar">
+      <button type="submit" class="app-cmp-button app-cl-filled">
+        <i class="material-symbols-outlined">save</i>
+        Save
+      </button>
+
+      <button type="reset" class="app-cmp-button app-cl-warn">
+        <i class="material-symbols-outlined">history</i>
+        Reset
+      </button>
+    </div>
+
+    <div class="_messages">
+      @if (form().dirty()) {
+        <p class="app-cl-warn">You changed settings, but <strong>haven't saved</strong> yet.</p>
+      }
+    </div>
+  </fieldset>
+</form>

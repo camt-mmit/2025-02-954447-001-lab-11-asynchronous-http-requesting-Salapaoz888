@@ -1,0 +1,17 @@
+@use './common';
+@use './data';
+@use './status';
+
+:host {
+  @include common.layout-block();
+
+  @layer {
+    & {
+      --_warn-color: var(--app-warn-color);
+    }
+  }
+}
+
+._data-view {
+  @include data.layout-data-view();
+}

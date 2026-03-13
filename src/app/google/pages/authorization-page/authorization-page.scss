@@ -1,0 +1,6 @@
+@use '../../scss/common';
+@use '../../scss/status';
+
+:host {
+  @include common.layout-block();
+}

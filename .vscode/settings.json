@@ -1,0 +1,15 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "javascript.preferences.organizeImports": {
+    "caseFirst": "lower",
+    "caseSensitivity": "caseSensitive"
+  },
+  "typescript.preferences.organizeImports": {
+    "caseFirst": "lower",
+    "caseSensitivity": "caseSensitive"
+  },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  }
+}

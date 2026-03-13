@@ -1,0 +1,16 @@
+@use './common';
+@use './data';
+
+:host {
+  @include common.layout-block();
+
+  @layer {
+    & {
+      --_warn-color: var(--app-warn-color);
+    }
+  }
+}
+
+._data-form {
+  @include data.layout-data-form();
+}

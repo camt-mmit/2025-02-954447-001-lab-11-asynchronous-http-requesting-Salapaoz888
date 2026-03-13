@@ -1,0 +1,13 @@
+@use '../../scss/field-tree-component';
+
+:host {
+  @layer {
+    & {
+      --_label-width: 12ch;
+    }
+  }
+}
+
+._data-form {
+  width: 100%;
+}
