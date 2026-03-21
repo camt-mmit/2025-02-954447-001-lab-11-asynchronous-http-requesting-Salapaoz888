@@ -2182,7 +2182,7 @@ algoliasearch@5.46.2:
     "@algolia/requester-fetch" "5.46.2"
     "@algolia/requester-node-http" "5.46.2"
 
-angular-cli-ghpages@3.0.2:
+angular-cli-ghpages@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/angular-cli-ghpages/-/angular-cli-ghpages-3.0.2.tgz#df1c7d1ed7deb02f2b62a8677bdb4d310c8efafb"
   integrity sha512-YurpFniC+IKKXdK7ZiIZBfznJBZmL7dHJH3o1wS6OwGmoZbYnVcjLWrHqK4JNxHYD8ExVtOlWuvkMCkrMX36Tg==
