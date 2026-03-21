@@ -1,3 +1,5 @@
+// src/app/google/routes.ts
+
 import { Routes } from '@angular/router';
 import { googleOauthConfig } from './config';
 import { formDirtyComfirmation } from './helpers';
@@ -10,6 +12,11 @@ import { CalendarService } from './services/calendar.service';
 import { OauthClient } from './services/oauth.client';
 import { OAUTH_CLIENT_CONFIGURATION } from './types/services';
 
+// นำเข้า Service และ Component ที่สร้างใหม่
+import { PeopleService } from './services/people.service';
+import { PeopleListPage } from './pages/people-list-page/people-list-page';
+import { CreateContactPage } from './pages/create-contact-page/create-contact-page'; // 👈 นำเข้า CreateContactPage
+
 export default [
   {
     path: '',
@@ -17,6 +24,7 @@ export default [
       { provide: OAUTH_CLIENT_CONFIGURATION, useValue: googleOauthConfig },
       OauthClient,
       CalendarService,
+      PeopleService,
     ],
     children: [
       { path: 'authorization', data: { fullPage: true }, component: AuthorizationPage },
@@ -44,6 +52,15 @@ export default [
                 ],
                 component: EventInsertPage,
               },
+            ],
+          },
+
+     
+          {
+            path: 'people',
+            children: [
+              { path: '', component: PeopleListPage },
+              { path: 'create', component: CreateContactPage }, 
             ],
           },
         ],

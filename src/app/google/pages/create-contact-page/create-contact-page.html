@@ -1,0 +1,75 @@
+<!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
+<div class="form-container">
+    <h2>Create Contact</h2>
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      
+      <div class="form-section">
+        <div class="input-group">
+          <label>Given Name*</label>
+          <input type="text" formControlName="givenName" class="app-cmp-input">
+        </div>
+        <div class="input-group">
+          <label>Family Name</label>
+          <input type="text" formControlName="familyName" class="app-cmp-input">
+        </div>
+      </div>
+  
+      <div class="form-section dynamic-box">
+        <button type="button" class="app-cmp-button" (click)="addEmail()" style="margin-bottom: 1rem;">
+          <i class="material-symbols-outlined">add</i> Email
+        </button>
+        
+        <div formArrayName="emails">
+          @for (emailCtrl of emails.controls; track $index) {
+            <div [formGroupName]="$index" class="dynamic-row">
+              <div class="input-group">
+                <label>Type* <small>e.g. home</small></label>
+                <input type="text" formControlName="type" class="app-cmp-input">
+              </div>
+              <div class="input-group">
+                <label>Email*</label>
+                <input type="email" formControlName="value" class="app-cmp-input">
+              </div>
+              <button type="button" class="remove-btn" (click)="removeEmail($index)">
+                <i class="material-symbols-outlined" style="color: #f44336;">delete</i>
+              </button>
+            </div>
+          }
+        </div>
+      </div>
+  
+      <div class="form-section dynamic-box">
+        <button type="button" class="app-cmp-button" (click)="addPhone()" style="margin-bottom: 1rem;">
+          <i class="material-symbols-outlined">add</i> Phone Number
+        </button>
+        
+        <div formArrayName="phones">
+          @for (phoneCtrl of phones.controls; track $index) {
+            <div [formGroupName]="$index" class="dynamic-row">
+              <div class="input-group">
+                <label>Type* <small>e.g. mobile</small></label>
+                <input type="text" formControlName="type" class="app-cmp-input">
+              </div>
+              <div class="input-group">
+                <label>Phone*</label>
+                <input type="text" formControlName="value" class="app-cmp-input">
+              </div>
+              <button type="button" class="remove-btn" (click)="removePhone($index)">
+                <i class="material-symbols-outlined" style="color: #f44336;">delete</i>
+              </button>
+            </div>
+          }
+        </div>
+      </div>
+  
+      <div class="action-buttons">
+        <button type="submit" class="app-cmp-button app-cl-primary" [disabled]="contactForm.invalid">
+          <i class="material-symbols-outlined">save</i> Save
+        </button>
+        <button type="button" class="app-cmp-button app-cl-warn" (click)="cancel()">
+          <i class="material-symbols-outlined">cancel</i> Cancel
+        </button>
+      </div>
+    </form>
+    
+  </div>

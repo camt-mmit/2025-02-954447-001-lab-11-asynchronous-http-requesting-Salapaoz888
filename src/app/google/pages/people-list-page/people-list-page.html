@@ -1,0 +1,72 @@
+<div class="page-header">
+    <div class="search-container">
+      <input 
+        type="text" 
+        class="app-cmp-input" 
+        placeholder="Search..." 
+        [ngModel]="searchQuery()" 
+        (ngModelChange)="searchQuery.set($event)" 
+      />
+      @if (searchQuery()) {
+        <button class="clear-btn" (click)="searchQuery.set('')">
+          <i class="material-symbols-outlined">close</i>
+        </button>
+      }
+    </div>
+  
+    <a routerLink="create" class="app-cmp-button app-cl-primary">
+      <i class="material-symbols-outlined">person_add</i>
+      <span style="margin-left: 8px;">Create</span>
+    </a>
+  </div>
+  
+  @if (isLoading()) {
+    <p class="_status-loading" style="text-align: center; margin-top: 2rem;">Loading connections...</p>
+  } @else {
+    <div class="connections-list">
+      @for (person of filteredConnections(); track person.resourceName) {
+        <div class="contact-card">
+            <div class="contact-header">
+                <div class="header-info">
+                  <img [src]="person.photos[0]?.url || ''" class="avatar" alt="Profile" />
+                  <h3>{{ person.names[0]?.displayName || 'Unknown' }}</h3>
+                </div>
+                
+                <div class="header-actions">
+                  <button type="button" class="app-cmp-button app-cl-warn" (click)="deleteContact(person.resourceName)">
+                    <i class="material-symbols-outlined">delete</i>
+                  </button>
+                </div>
+              </div>
+  
+          <div class="contact-details">
+            @if (person.emailAddresses) {
+              <div class="detail-group">
+                <strong>Emails</strong>
+                <ul>
+                  @for (email of person.emailAddresses; track email.value) {
+                    <li><span class="type-badge">{{ email.type || 'email' }}</span> {{ email.value }}</li>
+                  }
+                </ul>
+              </div>
+            }
+  
+            @if (person.phoneNumbers) {
+              <div class="detail-group">
+                <strong>Phones</strong>
+                <ul>
+                  @for (phone of person.phoneNumbers; track phone.value) {
+                    <li><span class="type-badge">{{ phone.type || 'phone' }}</span> {{ phone.value }}</li>
+                  }
+                </ul>
+              </div>
+            }
+          </div>
+        </div>
+      }
+  
+      @if (filteredConnections().length === 0) {
+        <p style="text-align: center; color: gray;">No contacts found matching "{{ searchQuery() }}"</p>
+      }
+    </div>
+  }

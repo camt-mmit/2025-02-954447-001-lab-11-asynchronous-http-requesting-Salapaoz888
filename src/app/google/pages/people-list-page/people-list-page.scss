@@ -1,0 +1,103 @@
+.page-header {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+  
+    .search-container {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      position: relative;
+      max-width: 400px;
+  
+      input {
+        width: 100%;
+        padding-right: 2.5rem;
+      }
+  
+      .clear-btn {
+        position: absolute;
+        right: 0.5rem;
+        background: none;
+        border: none;
+        color: #888;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+  
+        &:hover { color: #f44336; }
+      }
+    }
+  }
+  
+  .connections-list {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .contact-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #fafafa;
+  
+    .contact-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* 👈 เพิ่มบรรทัดนี้ เพื่อดันให้ปุ่มไปอยู่ขวาสุด */
+        gap: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.5rem;
+
+
+        .header-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+          }
+  
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+          h3 { margin: 0; }
+        }
+  
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+  
+      .detail-group {
+        strong { color: #555; display: block; margin-bottom: 0.5rem; }
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.25rem;
+            color: #333;
+  
+            .type-badge {
+              font-size: 0.75rem;
+              background: #e0e0e0;
+              padding: 2px 6px;
+              border-radius: 4px;
+              color: #666;
+            }
+          }
+        }
+      }
+    }
+  }
