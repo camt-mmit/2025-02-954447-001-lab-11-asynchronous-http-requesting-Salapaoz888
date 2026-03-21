@@ -9,5 +9,5 @@ export const googleOauthConfig: OauthClientConfiguration = {
   authorizationUrl: 'https://accounts.google.com/o/oauth2/v2/auth',
   redirectUrl: isDevMode()
     ? 'http://localhost:4200/google/authorization'
-    : 'https://github.com/camt-mmit/2025-02-954447-001-lab-11-asynchronous-http-requesting-Salapaoz888',
+    : 'https://camt-mmit.github.io/2025-02-954447-001-lab-11-asynchronous-http-requesting-Salapaoz888/google/authorization',
 };
